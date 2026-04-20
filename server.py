@@ -18,6 +18,9 @@ db_client = client[db_name]
 
 # Create the main app
 app = FastAPI(title="Unnati Investments API")
+@app.get("/")
+def root():
+    return {"message": "API is running"}
 
 # Middleware to inject database into request state
 @app.middleware("http")
