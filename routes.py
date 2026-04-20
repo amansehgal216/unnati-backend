@@ -62,7 +62,7 @@ async def get_db(request: Request):
 async def admin_login(credentials: AdminLogin, request: Request):
     db = request.state.db
     user = await db.admin_users.find_one({"email": credentials.email})
-    if not user or not pwd_context.verify(credentials.password, user["password_hash"]):
+    if not user or not not pwd_context.verify(credentials.password, user["password"]):
         raise HTTPException(status_code=401, detail="Incorrect email or password")
     
     access_token = create_access_token(data={"sub": user["email"]})
