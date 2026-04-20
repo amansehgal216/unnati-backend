@@ -17,7 +17,11 @@ db_name = os.getenv("DB_NAME", "unnati_db")
 db_client = client[db_name]
 
 # Create the main app
-app = FastAPI(title="Unnati Investments API")
+app = FastAPI(
+    title="Unnati Investments API",
+    docs_url="/docs",
+    redoc_url="/redoc"
+)
 @app.get("/")
 def root():
     return {"message": "API is running"}
